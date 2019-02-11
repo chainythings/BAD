@@ -95,10 +95,17 @@
 					<!-- Scripts -->
 
 
-					<input type="text" id="container" placeholder="enter text" v-model="value">
-					<p>{{ value }}</p>
-					<button @click="test">TEST</button>
-					<!-- {{apiReturned}} -->
+
+
+
+					Genres: <v-select multiple v-model="selectedGenres" :options="genres"></v-select>
+
+					Types: <v-select multiple v-model="selectedTypes" :options="types"></v-select>
+
+					<button @click="applyFilter">Apply</button>
+
+
+
 					<div id="el"></div>
 					<!-- end wrap -->
 				</section>
@@ -126,23 +133,30 @@
 
 	</html>
 </main>
+<script src="https://unpkg.com/vue@latest"></script>
 <script src="assets/js/jquery.dropotron.min.js"></script>
 <script src="assets/js/browser.min.js"></script>
 <script src="assets/js/breakpoints.min.js"></script>
 <script src="assets/js/util.js"></script>
 <script src="assets/js/main.js"></script>
 <script src="assets/js/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/vue@2.6.2/dist/vue.js"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="https://unpkg.com/vue-select@latest"></script>
 
 <script>
+	Vue.component('v-select', VueSelect.VueSelect);
 	var vue = new Vue({
 		el: '#main',
 		data() {
 			return {
 				value: 'abcde',
 				rowDataAllRecords: null,
-				columnDataAllRecords: null
+				rowDataFilteredRecords: null,
+				columnDataAllRecords: null,
+				genres: null,
+				selectedGenres: null,
+				types: null,
+				selectedTypes: null
 			}
 		},
 		mounted() {
@@ -156,6 +170,7 @@
 				)
 				.then(response => {
 					this.rowDataAllRecords = response.data.rows
+					this.rowDataFilteredRecords = this.rowDataAllRecords
 					this.assignCards()
 				})
 
@@ -169,22 +184,73 @@
 				})
 		},
 		methods: {
+
+			applyFilter() {
+				function withinArray(array, value) {
+					let found = false
+					array.forEach(function (item) {
+						if (value.includes(item)) {
+							found = true
+						}
+					})
+					return found
+				}
+
+				console.log("filtering")
+				console.log(this.selectedGenres)
+				this.rowDataFilteredRecords = []
+				if (this.selectedGenres) {
+					let filteredList = this.rowDataAllRecords.filter(project =>
+						withinArray(this.selectedGenres, project.genreofthesubmitteditem)
+					)
+					console.log(filteredList)
+					this.rowDataFilteredRecords = this.rowDataFilteredRecords.concat(filteredList)
+				}
+
+				if (this.selectedTypes) {
+					let filteredList = this.rowDataAllRecords.filter(project =>
+						withinArray(this.selectedTypes, project.typeofthesubmitteditem)
+					)
+					this.rowDataFilteredRecords = this.rowDataFilteredRecords.concat(filteredList)
+				}
+				console.log(this.rowDataFilteredRecords)
+				this.assignCards()
+			},
+
 			test() {
 				console.log("BUTT")
 				console.log(this)
 			},
 			assignColumns() {
 				let data = this.columnDataAllRecords
-				console.log("DATUM")
-				console.log(data)
-				var items = [4, 5, 4, 6, 3, 4, 5, 2, 23, 1, 4, 4, 4]
-				var uniqueItems = Array.from(new Set(items))
-				console.log(uniqueItems)
+
+
+				let concatinatedGenreList = data['genreofthesubmitteditem'].join(",");
+				concatinatedGenreList = concatinatedGenreList.replace(/; /g, ",");
+				concatinatedGenreList = concatinatedGenreList.replace(/, /g, ",");
+				var splitGenreArray = concatinatedGenreList.split(',');
+				var uniqueGenres = Array.from(new Set(splitGenreArray))
+				this.genres = uniqueGenres
+
+				console.log("filtered")
+				console.log(uniqueGenres)
+
+				let concatinatedTypeList = data['typeofthesubmitteditem'].join(",");
+				concatinatedTypeList = concatinatedTypeList.replace(/; /g, ",");
+				concatinatedTypeList = concatinatedTypeList.replace(/, /g, ",");
+				var splitTypeArray = concatinatedTypeList.split(',');
+				var uniqueTypes = Array.from(new Set(splitTypeArray))
+				this.types = uniqueTypes
+
+
+				console.log("filtered")
+				console.log(uniqueTypes)
 			},
 
 			assignCards() {
+				$('#el').empty()
 				console.log("ASSIGNING")
-				let data = this.rowDataAllRecords
+				let data = this.rowDataFilteredRecords
 				console.log(data)
 				var i = data.length;
 				while (i--) {
@@ -481,3 +547,16 @@
 	console.log("value ")
 	console.log(vue)
 </script>
+<style>
+	.container {
+		display: flex;
+	}
+
+	.fixed {
+		width: 200px;
+	}
+
+	.flex-item {
+		flex-grow: 1;
+	}
+</style>
