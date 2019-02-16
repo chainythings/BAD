@@ -120,6 +120,9 @@
 
             <!-- Scripts -->
 
+            Search:
+            <input v-model="search" placeholder="search..." />
+
             Genres:
             <v-select
               v-if="genres"
@@ -228,7 +231,7 @@
     el: "#main",
     data() {
       return {
-        value: "abcde",
+        search: null,
         rowDataAllRecords: null,
         rowDataFilteredRecords: null,
         columnDataAllRecords: null,
@@ -280,11 +283,17 @@
       // function to return if an element is within an array
       applyFilter() {
         function withinArray(array, values) {
+          console.log("FILTER");
+          console.log(array);
+          console.log(values);
           let found = false;
           array.forEach(function(item) {
             values.forEach(function(value) {
               if (value.includes(item)) {
                 found = true;
+                console.log("FOUND");
+                console.log(item);
+                console.log(value);
               }
             });
           });
@@ -327,7 +336,10 @@
         if (this.selectedCoins) {
           filteredLists.push(
             this.rowDataAllRecords.filter(project =>
-              withinArray(this.selectedCoins, [project.coinused, project.coinusedfurther])
+              withinArray(this.selectedCoins, [
+                project.coinused,
+                project.coinusedfurther
+              ])
             )
           );
         }
@@ -335,7 +347,10 @@
         if (this.selectedTokens) {
           filteredLists.push(
             this.rowDataAllRecords.filter(project =>
-              withinArray(this.selectedTokens, [project.tokenused, project.tokenusedfurther])
+              withinArray(this.selectedTokens, [
+                project.tokenused,
+                project.tokenusedfurther
+              ])
             )
           );
         }
@@ -343,7 +358,10 @@
         if (this.selectedStandards) {
           filteredLists.push(
             this.rowDataAllRecords.filter(project =>
-              withinArray(this.selectedStandards, [project.standardused, project.standardusedfurther])
+              withinArray(this.selectedStandards, [
+                project.standardused,
+                project.standardusedfurther
+              ])
             )
           );
         }
@@ -371,20 +389,27 @@
             )
           );
         }
+
+        if (this.search) {
+          filteredLists.push(
+            this.rowDataAllRecords.filter(project =>
+              withinArray([this.search], Object.values(project))
+            )
+          );
+        }
+
         console.log(filteredLists);
         // lastly do an effective inner join on the sets
         filteredLists = filteredLists.filter(items => items.length > 0);
-        if (filteredLists.length > 0) {
-          this.rowDataFilteredRecords = filteredLists
-            .shift()
-            .filter(function(v) {
-              return filteredLists.every(function(a) {
-                return a.indexOf(v) !== -1;
-              });
-            });
-        } else {
-          this.rowDataFilteredRecords = this.rowDataAllRecords;
-        }
+
+        this.rowDataFilteredRecords = filteredLists.shift().filter(function(v) {
+          return filteredLists.every(function(a) {
+            return a.indexOf(v) !== -1;
+          });
+        });
+
+        this.rowDataFilteredRecords = this.rowDataAllRecords;
+
         this.assignCards();
       },
 
