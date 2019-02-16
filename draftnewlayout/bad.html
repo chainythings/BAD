@@ -140,7 +140,7 @@
             <v-select
               v-if="blockchains"
               multiple
-              v-model="selectedBlockchain"
+              v-model="selectedBlockchains"
               :options="blockchains"
             ></v-select>
 
@@ -189,7 +189,19 @@
         types: null,
         selectedTypes: null,
         blockchains: null,
-        selectedBlockchain: null
+        selectedBlockchains: null,
+        coins: null,
+        selectedCoins: null,
+        tokens: null,
+        selectedTokens: null,
+        standards: null,
+        selectedStandards: null,
+        locations: null,
+        selectedLocations: null,
+        yearStart: null,
+        selectedYearStart: null,
+        yearEnd: null,
+        selectedYearEnd: null
       };
     },
     mounted() {
@@ -251,9 +263,9 @@
           );
         }
 
-        if (this.selectedBlockchain) {
+        if (this.selectedBlockchains) {
           let filteredList = this.rowDataAllRecords.filter(project =>
-            withinArray(this.selectedBlockchain, project.blockchainused)
+            withinArray(this.selectedBlockchains, project.blockchainused)
           );
           this.rowDataFilteredRecords = this.rowDataFilteredRecords.concat(
             filteredList
@@ -270,33 +282,92 @@
       assignColumns() {
         let data = this.columnDataAllRecords;
 
-        let concatinatedGenreList = data["genreofthesubmitteditem"].join(",");
-        concatinatedGenreList = concatinatedGenreList.replace(/; /g, ",");
-        concatinatedGenreList = concatinatedGenreList.replace(/, /g, ",");
-        var splitGenreArray = concatinatedGenreList.split(",");
+        // genres
+        let concatenatedGenreList = data["genreofthesubmitteditem"].join(",");
+        concatenatedGenreList = concatenatedGenreList.replace(/; /g, ",");
+        concatenatedGenreList = concatenatedGenreList.replace(/, /g, ",");
+        var splitGenreArray = concatenatedGenreList.split(",");
         var uniqueGenres = Array.from(new Set(splitGenreArray));
-        this.genres = uniqueGenres;
+        this.genres = uniqueGenres.sort().filter(Boolean);
 
-        let concatinatedTypeList = data["typeofthesubmitteditem"].join(",");
-        concatinatedTypeList = concatinatedTypeList.replace(/; /g, ",");
-        concatinatedTypeList = concatinatedTypeList.replace(/, /g, ",");
-        var splitTypeArray = concatinatedTypeList.split(",");
+        // types
+        let concatenatedTypeList = data["typeofthesubmitteditem"].join(",");
+        concatenatedTypeList = concatenatedTypeList.replace(/; /g, ",");
+        concatenatedTypeList = concatenatedTypeList.replace(/, /g, ",");
+        var splitTypeArray = concatenatedTypeList.split(",");
         var uniqueTypes = Array.from(new Set(splitTypeArray));
-        this.types = uniqueTypes;
+        this.types = uniqueTypes.sort().filter(Boolean);
 
-        let concatinatedBlockchainList = data["blockchainused"].join(",");
-        concatinatedBlockchainList = concatinatedBlockchainList.replace(
+        // blockchains
+        let spannedBlockchainList = data["blockchainused"].concat(
+          data["blockchainusedfurther"]
+        );
+        let concatenatedBlockchainList = spannedBlockchainList.join(",");
+        console.log("input");
+        console.log(concatenatedBlockchainList);
+        concatenatedBlockchainList = concatenatedBlockchainList.replace(
           /; /g,
           ","
         );
-        concatinatedBlockchainList = concatinatedBlockchainList.replace(
+        concatenatedBlockchainList = concatenatedBlockchainList.replace(
           /, /g,
           ","
         );
-        var splitBlockchainArray = concatinatedBlockchainList.split(",");
+        var splitBlockchainArray = concatenatedBlockchainList.split(",");
         var uniqueBlockchains = Array.from(new Set(splitBlockchainArray));
-        this.blockchains = uniqueBlockchains;
+        this.blockchains = uniqueBlockchains.sort().filter(Boolean);
 
+        // coins
+        let spannedCoinList = data["coinused"].concat(data["coinusedfurther"]);
+        let concatenatedCoinList = spannedCoinList.join(",");
+        concatenatedCoinList = concatenatedCoinList.replace(/; /g, ",");
+        concatenatedCoinList = concatenatedCoinList.replace(/, /g, ",");
+        var splitCoinArray = concatenatedCoinList.split(",");
+        var uniqueCoins = Array.from(new Set(splitCoinArray));
+        this.coins = uniqueCoins.sort().filter(Boolean);
+
+        // tokens
+        let spannedTokensList = data["tokenused"].concat(data["tokenusedfurther"]);
+        let concatenatedTokensList = spannedTokensList.join(",");
+        concatenatedTokensList = concatenatedTokensList.replace(/; /g, ",");
+        concatenatedTokensList = concatenatedTokensList.replace(/, /g, ",");
+        var splitTokensArray = concatenatedTokensList.split(",");
+        var uniqueTokens = Array.from(new Set(splitTokensArray));
+        this.tokens = uniqueTokens.sort().filter(Boolean);
+
+        // standards
+        let spannedStandardsList = data["standardused"].concat(data["standardusedfurther"]);
+        let concatenatedStandardsList = spannedStandardsList.join(",");
+        concatenatedStandardsList = concatenatedStandardsList.replace(/; /g, ",");
+        concatenatedStandardsList = concatenatedStandardsList.replace(/, /g, ",");
+        var splitStandardsArray = concatenatedStandardsList.split(",");
+        var uniqueStandards = Array.from(new Set(splitStandardsArray));
+        this.standards = uniqueStandards.sort().filter(Boolean);
+
+        // locations
+        let concatenatedLocationsList = data["locationcountry"]
+        // concatenatedLocationsList = concatenatedLocationsList.replace(/; /g, ",");
+        // concatenatedLocationsList = concatenatedLocationsList.replace(/, /g, ",");
+        // var splitLocationsArray = concatenatedLocationsList.split(",");
+        var uniqueLocations = Array.from(new Set(concatenatedLocationsList));
+        this.locations = uniqueLocations.sort().filter(Boolean);
+
+        // start year
+        let concatenatedYearStartList = data["yearstart"].join(",");
+        concatenatedYearStartList = concatenatedYearStartList.replace(/; /g, ",");
+        concatenatedYearStartList = concatenatedYearStartList.replace(/, /g, ",");
+        var splitYearStartArray = concatenatedYearStartList.split(",");
+        var uniqueYearStart = Array.from(new Set(splitYearStartArray));
+        this.yearStart = uniqueYearStart.sort().filter(Boolean);
+
+        // end year
+        let concatenatedYearEndList = data["yearend"].join(",");
+        concatenatedYearEndList = concatenatedYearEndList.replace(/; /g, ",");
+        concatenatedYearEndList = concatenatedYearEndList.replace(/, /g, ",");
+        var splitYearEndArray = concatenatedYearEndList.split(",");
+        var uniqueYearEnd = Array.from(new Set(splitYearEndArray));
+        this.yearEnd = uniqueYearEnd.sort().filter(Boolean);
+        
         console.log("filtered");
         console.log(uniqueTypes);
       },
