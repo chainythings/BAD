@@ -103,25 +103,27 @@
 					</section>
 
 					<!-- Section B.A.D Latest Entries Entries -->
-					<section class="features alt">
+					<section class="features alt" v-if="cards">
 						<article class="icon fa-diamond" v-if="cards">
 							<img v-bind:src="cards[cards.length - 1].urltologophotoimage" style="height: auto; width: 100px;" />
 							<h4>{{cards[cards.length - 1].nameofthesubmitteditem}}</h4>
 							<span class="badge">{{cards[cards.length - 1].typeofthesubmitteditem}}</span>
 						</article>
 						<article class="icon fa-floppy-o">
-								<img v-bind:src="cards[cards.length - 2].urltologophotoimage" style="height: auto; width: 100px;" />
-								<h4>{{cards[cards.length - 2].nameofthesubmitteditem}}</h4>
-								<span class="badge">{{cards[cards.length - 2].typeofthesubmitteditem}}</span>
+							<img v-bind:src="cards[cards.length - 2].urltologophotoimage" style="height: auto; width: 100px;" />
+							<h4>{{cards[cards.length - 2].nameofthesubmitteditem}}</h4>
+							<span class="badge">{{cards[cards.length - 2].typeofthesubmitteditem}}</span>
 						</article>
 						<article class="icon fa-floppy-o">
-								<img v-bind:src="cards[cards.length - 3].urltologophotoimage" style="height: auto; width: 100px;" />
-								<h4>{{cards[cards.length - 3].nameofthesubmitteditem}}</h4>
-								<span class="badge">{{cards[cards.length - 3].typeofthesubmitteditem}}</span>
+							<img v-bind:src="cards[cards.length - 3].urltologophotoimage" style="height: auto; width: 100px;" />
+							<h4>{{cards[cards.length - 3].nameofthesubmitteditem}}</h4>
+							<span class="badge">{{cards[cards.length - 3].typeofthesubmitteditem}}</span>
 						</article>
 						<article>
 							<ul class="actions">
-								<li><a href="bad.html" class="button primary">ACCESS B.A.D</a></li>
+								<p>
+									<a href="bad.html" class="button primary">ACCESS B.A.D</a><br><br>
+									Explore {{totalNumberOfEntries}} different crypto projects</p>
 							</ul>
 						</article>
 					</section>
@@ -449,6 +451,7 @@
 		data() {
 			return {
 				cards: null,
+				totalNumberOfEntries: 0
 			}
 		},
 		mounted() {
@@ -459,6 +462,7 @@
 				)
 				.then(response => {
 					this.cards = response.data.rows;
+					this.totalNumberOfEntries = response.data.rows.length
 				});
 
 		}
