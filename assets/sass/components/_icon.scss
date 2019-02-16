@@ -1,5 +1,5 @@
 ///
-/// Reflex by Pixelarity
+/// Faction by Pixelarity
 /// pixelarity.com | hello@pixelarity.com
 /// License: pixelarity.com/license
 ///
@@ -8,8 +8,8 @@
 
 	.icon {
 		@include icon;
+		border-bottom: none;
 		position: relative;
-		border-bottom-width: 0;
 
 		> .label {
 			display: none;

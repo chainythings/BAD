@@ -1,5 +1,5 @@
 ///
-/// Reflex by Pixelarity
+/// Faction by Pixelarity
 /// pixelarity.com | hello@pixelarity.com
 /// License: pixelarity.com/license
 ///
@@ -17,7 +17,7 @@
 
 		tbody {
 			tr {
-				border: solid 1px;
+				border: solid _size(border-width);
 				border-left: 0;
 				border-right: 0;
 			}
@@ -35,11 +35,11 @@
 		}
 
 		thead {
-			border-bottom: solid 2px;
+			border-bottom: solid (_size(border-width) * 2);
 		}
 
 		tfoot {
-			border-top: solid 2px;
+			border-top: solid (_size(border-width) * 2);
 		}
 
 		&.alt {
@@ -48,18 +48,18 @@
 			tbody {
 				tr {
 					td {
-						border: solid 1px;
+						border: solid _size(border-width);
 						border-left-width: 0;
 						border-top-width: 0;
 
 						&:first-child {
-							border-left-width: 1px;
+							border-left-width: _size(border-width);
 						}
 					}
 
 					&:first-child {
 						td {
-							border-top-width: 1px;
+							border-top-width: _size(border-width);
 						}
 					}
 				}
@@ -77,17 +77,9 @@
 
 	@mixin color-table($p: null) {
 		table {
-			thead {
-				border-bottom-color: _palette($p, border-alt);
-			}
-
-			tfoot {
-				border-top-color: _palette($p, border-alt);
-			}
-
 			tbody {
 				tr {
-					border-color: _palette($p, border-alt);
+					border-color: _palette($p, border);
 
 					&:nth-child(2n + 1) {
 						background-color: _palette($p, border-bg);
@@ -95,11 +87,23 @@
 				}
 			}
 
+			th {
+				color: _palette($p, fg-bold);
+			}
+
+			thead {
+				border-bottom-color: _palette($p, border);
+			}
+
+			tfoot {
+				border-top-color: _palette($p, border);
+			}
+
 			&.alt {
 				tbody {
 					tr {
 						td {
-							border-color: _palette($p, border-alt);
+							border-color: _palette($p, border);
 						}
 					}
 				}

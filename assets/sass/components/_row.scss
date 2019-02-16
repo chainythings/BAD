@@ -1,5 +1,5 @@
 ///
-/// Reflex by Pixelarity
+/// Faction by Pixelarity
 /// pixelarity.com | hello@pixelarity.com
 /// License: pixelarity.com/license
 ///
@@ -14,7 +14,7 @@
 		}
 
 		@include breakpoint('<=large') {
-			@include html-grid(2em, 'large');
+			@include html-grid(1.5em, 'large');
 		}
 
 		@include breakpoint('<=medium') {
@@ -22,10 +22,10 @@
 		}
 
 		@include breakpoint('<=small') {
-			@include html-grid(1em, 'small');
+			@include html-grid(1.25em, 'small');
 		}
 
 		@include breakpoint('<=xsmall') {
-			@include html-grid(1em, 'xsmall');
+			@include html-grid(1.25em, 'xsmall');
 		}
 	}

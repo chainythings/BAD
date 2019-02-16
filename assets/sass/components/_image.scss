@@ -1,5 +1,5 @@
 ///
-/// Reflex by Pixelarity
+/// Faction by Pixelarity
 /// pixelarity.com | hello@pixelarity.com
 /// License: pixelarity.com/license
 ///
@@ -55,6 +55,24 @@
 
 			img {
 				width: 100%;
+			}
+
+			@include breakpoint('<=small') {
+				margin: 0 0 _size(element-margin) 0;
+			}
+		}
+	}
+
+	a.image {
+		overflow: hidden;
+
+		img {
+			@include vendor('transition', 'transform #{_duration(transition)} ease-in-out');
+		}
+
+		&:hover {
+			img {
+				@include vendor('transform', 'scale(1.075)');
 			}
 		}
 	}

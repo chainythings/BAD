@@ -1,5 +1,5 @@
 ///
-/// Reflex by Pixelarity
+/// Faction by Pixelarity
 /// pixelarity.com | hello@pixelarity.com
 /// License: pixelarity.com/license
 ///
@@ -7,123 +7,244 @@
 /* Header */
 
 	#header {
+		@include vendor('align-items', 'center');
+		@include vendor('display', 'flex');
+		@include vendor('justify-content', 'flex-end');
+		@include color-button(accent1);
+		background: desaturate(darken(_palette(accent1, bg), 8), 5);
+		color: _palette(accent1, fg-bold);
+		left: 0;
+		padding: 0 1.5em;
+		height: 5em;
+		line-height: 5em;
 		position: fixed;
-		right: 2em;
-		top: 2em;
-		z-index: _misc(z-index-base);
+		top: 0;
+		width: 100%;
+		z-index: _misc(z-index-base) + 1;
+		cursor: default;
 
-		ul {
-			@include vendor('display', 'flex');
-			@include vendor('align-items', 'center');
-			list-style: none;
-			margin: 0;
-			padding: 0;
+		a {
+			color: inherit !important;
+			border-bottom: 0;
+		}
 
-			li {
-				display: block;
+		> .logo {
+			display: block;
+			margin-right: auto;
+			@include vendor('flex', '1');
+
+			a {
+				font-family: _font(family-alt);
+				font-size: 1.4em;
+				letter-spacing: 0.225em;
+				margin: 0 0.25em 0 0;
 				padding: 0;
+				text-transform: uppercase;
+				vertical-align: middle;
+			}
 
-				a {
-					display: block;
-					position: relative;
-					height: 3.75em;
-					line-height: 3.75em;
-					padding: 0 2em 0 0;
-					border: 0;
-				}
+			span {
+				vertical-align: middle;
+			}
+		}
 
-				a[href="#menu"] {
-					$size: 0.8;
+		a[href="#navPanel"] {
+			@include icon;
+			-webkit-tap-highlight-color: rgba(0,0,0,0);
+			padding: 0 1.25em;
+			display: none;
 
-					@include vendor('transition', (
-						'width #{_duration(transition)} ease',
-						'border-radius #{_duration(transition)} ease',
-						'color #{_duration(transition)} ease'
-					));
-					-webkit-tap-highlight-color: transparent;
-					background-color: transparentize(darken(_palette(fg), 5), 0.1);
-					border-radius: 100%;
-					color: _palette(fg);
-					overflow: hidden;
+			&:before {
+				content: '\f0c9';
+			}
+		}
+
+		> nav {
+			@include vendor('flex', '0 1 auto');
+
+			> ul {
+				@include vendor('align-items', 'center');
+				@include vendor('display', 'flex');
+				list-style-type: none;
+				padding: 0;
+				margin: 0;
+
+				> li {
 					padding: 0;
-					text-decoration: none;
-					white-space: nowrap;
-					font-size: (1em * $size);
-					text-transform: uppercase;
-					letter-spacing: 0.2em;
-					text-indent: (-3.75em / $size);
-					width: (3.75em / $size);
-					height: (3.75em / $size);
-					line-height: (3.75em / $size);
 
-					&:before {
-						@include vendor('transition', 'all #{_duration(transition)} ease');
-						content: '';
-						display: block;
-						position: absolute;
-						top: 0;
-						right: 0;
-						background-image: svg-url('<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100" preserveAspectRatio="none"><style>line { stroke-width: 6px; stroke: #{_palette(bg)}; }</style><line x1="10" y1="30" x2="90" y2="30" /><line x1="10" y1="50" x2="90" y2="50" /><line x1="10" y1="70" x2="90" y2="70" /></svg>');
-						background-position: center;
-						background-repeat: no-repeat;
-						width: (3.75em / $size);
-						height: (3.75em / $size);
-						background-size: (2em / $size);
+					> ul {
+						display: none;
 					}
 
-					&:hover {
-						color: _palette(bg);
-						text-indent: 0;
-						width: (7.75em / $size);
-						border-radius: (3.75em / $size);
-						padding-left: (1.5em / $size);
+					a {
+						display: block;
+						height: inherit;
+						line-height: inherit;
+						padding: 0 1em;
+						margin: 0 0.5em;
+
+						&:hover, &:focus {
+							color: _palette(accent1, fg-bold);
+						}
+
+						&.icon {
+							&:before {
+								margin-right: 0.5em;
+							}
+						}
+
+						&.button {
+							font-size: 1em;
+							height: 2.6em;
+							line-height: 2.5em;
+							padding: 0 1.65em;
+							margin: 0 1em;
+						}
+					}
+
+					&:last-child {
+						a {
+							margin-right: 0 !important;
+						}
+					}
+				}
+			}
+
+			@at-root {
+				.dropotron {
+					background-color: _palette(bg);
+					border-radius: 0.5em;
+					box-shadow: 0 0 3px 1px rgba(#000, 0.1);
+					list-style-type: none;
+					margin: -0.5em 0 0;
+					min-width: 10em;
+					padding: 0.5em 0;
+
+					&.level-0 {
+						margin-top: 1em;
 
 						&:before {
-							background-size: (1.25em / $size);
+							@include vendor('transform', 'rotate(45deg)');
+							background-color: _palette(bg);
+							box-shadow: -2px -2px 3px -1px rgba(#000, 0.1);
+							content: '';
+							height: 0.75em;
+							position: absolute;
+							right: 2em;
+							top: -0.375em;
+							width: 0.75em;
+						}
+					}
+
+					li {
+						border-top: solid _size(border-width) _palette(border);
+						padding: 0;
+						position: relative;
+
+						&:first-child {
+							border-top: none;
+						}
+
+						&.active {
+							> a {
+								color: _palette(accent1, fg-bold) !important;
+								background-color: _palette(accent1, bg);
+							}
+						}
+					}
+
+					a {
+						@include vendor('transition', 'none');
+						color: _palette(fg);
+						padding: 0.5em 1em;
+						border-bottom: 0;
+
+						&:hover {
+							color: _palette(accent1, fg-bold) !important;
+							background-color: _palette(accent1, bg);
 						}
 					}
 				}
 			}
 		}
 
-		@include breakpoint('<=small') {
-			right: 1em;
-			top: 1em;
+		@include breakpoint('<=large') {
+			a {
+				margin-left: 2em;
+			}
+		}
 
-			ul {
-				li {
-					a {
-						height: 3em;
-						line-height: 3em;
-						padding: 0 1em 0 0;
-					}
+		@include breakpoint('<=medium') {
+			padding: 0 0 0 1em;
 
-					a[href="#menu"] {
-						$size: 0.8;
-
-						text-indent: (-3em / $size);
-						width: (3em / $size);
-						height: (3em / $size);
-						line-height: (3em / $size);
-
-						&:before {
-							width: (3em / $size);
-							height: (3em / $size);
-							background-size: (1.75em / $size);
-						}
-
-						&:hover {
-							border-radius: 100%;
-							padding-left: 0;
-							text-indent: (-3em / $size);
-							width: (3em / $size);
-
-							&:before {
-								background-size: (1.75em / $size);
-							}
-						}
-					}
+			> .logo {
+				a {
+					font-size: 1em;
 				}
 			}
+
+			a[href="#navPanel"] {
+				display: block;
+
+				&:before {
+					float: right;
+					margin-left: 0.5em;
+					margin-top: 0.05em;
+				}
+			}
+
+			> nav {
+				display: none;
+			}
+		}
+
+		@include breakpoint('<=small') {
+			height: 3em;
+			line-height: 3em;
+		}
+
+		@include breakpoint('<=xsmall') {
+			@include vendor('align-items', 'flex-start');
+			min-width: 320px;
+
+			> .logo {
+				span {
+					display: none;
+				}
+			}
+
+			a[href="#navPanel"] {
+				position: relative;
+				text-indent: 8em;
+				white-space: nowrap;
+				width: 3.5em;
+
+				&:before {
+					left: 0;
+					margin-left: 0;
+					margin-top: 0;
+					position: absolute;
+					text-align: center;
+					text-indent: 0;
+					top: 0;
+					width: inherit;
+				}
+			}
+		}
+	}
+
+	body {
+		padding-top: 10em;
+
+		@include breakpoint('<=large') {
+			padding-top: 6.5em;
+		}
+
+		@include breakpoint('<=small') {
+			padding-top: 4em;
+		}
+
+		@include breakpoint('<=xsmall') {
+			padding-top: 3em;
 		}
 	}

@@ -1,5 +1,5 @@
 ///
-/// Reflex by Pixelarity
+/// Faction by Pixelarity
 /// pixelarity.com | hello@pixelarity.com
 /// License: pixelarity.com/license
 ///
@@ -30,7 +30,7 @@
 			padding-left: 0;
 
 			li {
-				border-top: solid 1px;
+				border-top: solid _size(border-width);
 				padding: 0.5em 0;
 
 				&:first-child {
@@ -56,22 +56,12 @@
 	}
 
 	@mixin color-list($p: null) {
+		$highlight: _palette($p, highlight);
+
 		ul {
 			&.alt {
 				li {
-					border-top-color: _palette($p, border-alt);
-				}
-			}
-
-			&.icons {
-				li {
-					a.icon {
-						&:hover {
-							&:before {
-								background-color: _palette($p, border-bg);
-							}
-						}
-					}
+					border-top-color: _palette($p, border);
 				}
 			}
 		}

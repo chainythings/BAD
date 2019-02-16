@@ -5,10 +5,10 @@
 @import 'libs/breakpoints';
 @import 'libs/html-grid';
 @import 'font-awesome.min.css';
-@import url('https://fonts.googleapis.com/css?family=Raleway:300,300italic,500,500italic');
+@import 'https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600|Oswald:700';
 
 /*
-	Reflex by Pixelarity
+	Faction by Pixelarity
 	pixelarity.com | hello@pixelarity.com
 	License: pixelarity.com/license
 */
@@ -28,12 +28,31 @@
 
 	@mixin color($p) {
 		@include color-typography($p);
+		@include color-box($p);
 		@include color-button($p);
 		@include color-form($p);
 		@include color-list($p);
-		@include color-icons($p);
+		@include color-contact-icons($p);
+		@include color-pagination($p);
+		@include color-section($p);
 		@include color-table($p);
-		@include color-spotlight($p);
+		@include color-sidebar($p);
+		@include color-main($p);
+		@include color-features($p);
+		@include color-spotlights($p);
+		@include color-featured-posts($p);
+		@include color-posts($p);
+	}
+
+	@mixin sr-only {
+		border: 0;
+		clip: rect(0,0,0,0);
+		height: 1px;
+		margin: -1px;
+		overflow: hidden;
+		padding: 0;
+		position: absolute;
+		width: 1px;
 	}
 
 // Base.
@@ -53,14 +72,21 @@
 	@import 'components/list';
 	@import 'components/actions';
 	@import 'components/icons';
+	@import 'components/contact-icons';
+	@import 'components/pagination';
 	@import 'components/section';
 	@import 'components/table';
-	@import 'components/spotlight';
+	@import 'components/sidebar';
+	@import 'components/main';
+	@import 'components/features';
+	@import 'components/spotlights';
+	@import 'components/featured-posts';
+	@import 'components/posts';
 	@import 'components/wrapper';
 
 // Layout.
 
 	@import 'layout/header';
-	@import 'layout/menu';
+	@import 'layout/navPanel';
+	@import 'layout/banner';
 	@import 'layout/footer';
-	@import 'layout/intro';

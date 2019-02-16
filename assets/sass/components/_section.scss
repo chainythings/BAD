@@ -1,5 +1,5 @@
 ///
-/// Reflex by Pixelarity
+/// Faction by Pixelarity
 /// pixelarity.com | hello@pixelarity.com
 /// License: pixelarity.com/license
 ///
@@ -7,57 +7,47 @@
 /* Section/Article */
 
 	section, article {
-		header {
-			h1, h2, h3, h4, h5, h6 {
-				&:before {
-					content: '';
-					display: block;
-					width: 2em;
-					height: 1px;
-					border-top: solid 1px;
-					margin: 0 0 1em 0;
-				}
-			}
-
-			p {
-				font-size: 1.25em;
-			}
-
-			&.major {
-				text-align: center;
-				margin: 0 0 (_size(element-margin) * 1.5) 0;
-
-				h1, h2, h3, h4, h5, h6 {
-					&:before {
-						margin-left: auto;
-						margin-right: auto;
-					}
-				}
-			}
-		}
-
 		&.special {
 			text-align: center;
+		}
+	}
 
-			header {
-				h2, h3, h4, h5, h6 {
-					&:before {
-						margin-left: auto;
-						margin-right: auto;
-					}
-				}
-			}
+	header {
+		p {
+			position: relative;
+			margin: 0 0 (_size(element-margin) * 0.75) 0;
 		}
 
-		@include breakpoint('<=small') {
-			header {
-				p {
-					font-size: 1em;
+		small {
+			display: block;
+			margin-bottom: 1em;
+		}
 
-					br {
-						display: none;
-					}
-				}
+		h1 + p,
+		h2 + p {
+			font-size: 1.25em;
+			margin-top: (_size(element-margin) * -0.25);
+		}
+
+		h3 + p {
+			font-size: 1.1em;
+			margin-top: (_size(element-margin) * -0.25);
+		}
+
+		h4 + p,
+		h5 + p,
+		h6 + p {
+			font-size: 0.9em;
+			margin-top: (_size(element-margin) * -0.25);
+		}
+	}
+
+	@mixin color-section($p: null) {
+		header {
+			p {
+				color: _palette($p, fg-light);
 			}
 		}
 	}
+
+	@include color-section;

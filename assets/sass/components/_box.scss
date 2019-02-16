@@ -1,5 +1,5 @@
 ///
-/// Reflex by Pixelarity
+/// Faction by Pixelarity
 /// pixelarity.com | hello@pixelarity.com
 /// License: pixelarity.com/license
 ///
@@ -8,7 +8,7 @@
 
 	.box {
 		border-radius: _size(border-radius);
-		border: solid 1px;
+		border: solid _size(border-width);
 		margin-bottom: _size(element-margin);
 		padding: 1.5em;
 
@@ -24,3 +24,11 @@
 			padding: 0;
 		}
 	}
+
+	@mixin color-box($p: null) {
+ 		.box {
+ 			border-color: _palette($p, border);
+ 		}
+	}
+
+	@include color-box;

@@ -1,5 +1,5 @@
 ///
-/// Reflex by Pixelarity
+/// Faction by Pixelarity
 /// pixelarity.com | hello@pixelarity.com
 /// License: pixelarity.com/license
 ///
@@ -35,6 +35,7 @@
 
 	body {
 		background: _palette(bg);
+		overflow-x: hidden;
 
 		// Stops initial animations until page loads.
 			&.is-preload {
