@@ -207,7 +207,6 @@
     mounted() {
       console.log("MOUNT");
       // const axios = require('axios');
-      this.test();
 
       axios
         .get(
@@ -241,44 +240,47 @@
           return found;
         }
 
-        console.log("filtering");
-        console.log(this.selectedGenres);
         this.rowDataFilteredRecords = [];
+        let filteredLists = [];
         if (this.selectedGenres) {
-          let filteredList = this.rowDataAllRecords.filter(project =>
-            withinArray(this.selectedGenres, project.genreofthesubmitteditem)
-          );
-          console.log(filteredList);
-          this.rowDataFilteredRecords = this.rowDataFilteredRecords.concat(
-            filteredList
+          filteredLists.push(
+            this.rowDataAllRecords.filter(project =>
+              withinArray(this.selectedGenres, project.genreofthesubmitteditem)
+            )
           );
         }
 
         if (this.selectedTypes) {
-          let filteredList = this.rowDataAllRecords.filter(project =>
-            withinArray(this.selectedTypes, project.typeofthesubmitteditem)
-          );
-          this.rowDataFilteredRecords = this.rowDataFilteredRecords.concat(
-            filteredList
+          filteredLists.push(
+            this.rowDataAllRecords.filter(project =>
+              withinArray(this.selectedTypes, project.typeofthesubmitteditem)
+            )
           );
         }
 
         if (this.selectedBlockchains) {
-          let filteredList = this.rowDataAllRecords.filter(project =>
-            withinArray(this.selectedBlockchains, project.blockchainused)
-          );
-          this.rowDataFilteredRecords = this.rowDataFilteredRecords.concat(
-            filteredList
+          filteredLists.push(
+            this.rowDataAllRecords.filter(project =>
+              withinArray(this.selectedBlockchains, project.blockchainused)
+            )
           );
         }
-        console.log(this.rowDataFilteredRecords);
+        
+        filteredLists = filteredLists.filter(items => items.length > 0);
+        if (filteredLists.length > 0) {
+          this.rowDataFilteredRecords = filteredLists
+            .shift()
+            .filter(function(v) {
+              return filteredLists.every(function(a) {
+                return a.indexOf(v) !== -1;
+              });
+            });
+        } else {
+          this.rowDataFilteredRecords = this.rowDataAllRecords;
+        }
         this.assignCards();
       },
 
-      test() {
-        console.log("BUTT");
-        console.log(this);
-      },
       assignColumns() {
         let data = this.columnDataAllRecords;
 
@@ -327,7 +329,9 @@
         this.coins = uniqueCoins.sort().filter(Boolean);
 
         // tokens
-        let spannedTokensList = data["tokenused"].concat(data["tokenusedfurther"]);
+        let spannedTokensList = data["tokenused"].concat(
+          data["tokenusedfurther"]
+        );
         let concatenatedTokensList = spannedTokensList.join(",");
         concatenatedTokensList = concatenatedTokensList.replace(/; /g, ",");
         concatenatedTokensList = concatenatedTokensList.replace(/, /g, ",");
@@ -336,16 +340,24 @@
         this.tokens = uniqueTokens.sort().filter(Boolean);
 
         // standards
-        let spannedStandardsList = data["standardused"].concat(data["standardusedfurther"]);
+        let spannedStandardsList = data["standardused"].concat(
+          data["standardusedfurther"]
+        );
         let concatenatedStandardsList = spannedStandardsList.join(",");
-        concatenatedStandardsList = concatenatedStandardsList.replace(/; /g, ",");
-        concatenatedStandardsList = concatenatedStandardsList.replace(/, /g, ",");
+        concatenatedStandardsList = concatenatedStandardsList.replace(
+          /; /g,
+          ","
+        );
+        concatenatedStandardsList = concatenatedStandardsList.replace(
+          /, /g,
+          ","
+        );
         var splitStandardsArray = concatenatedStandardsList.split(",");
         var uniqueStandards = Array.from(new Set(splitStandardsArray));
         this.standards = uniqueStandards.sort().filter(Boolean);
 
         // locations
-        let concatenatedLocationsList = data["locationcountry"]
+        let concatenatedLocationsList = data["locationcountry"];
         // concatenatedLocationsList = concatenatedLocationsList.replace(/; /g, ",");
         // concatenatedLocationsList = concatenatedLocationsList.replace(/, /g, ",");
         // var splitLocationsArray = concatenatedLocationsList.split(",");
@@ -354,8 +366,14 @@
 
         // start year
         let concatenatedYearStartList = data["yearstart"].join(",");
-        concatenatedYearStartList = concatenatedYearStartList.replace(/; /g, ",");
-        concatenatedYearStartList = concatenatedYearStartList.replace(/, /g, ",");
+        concatenatedYearStartList = concatenatedYearStartList.replace(
+          /; /g,
+          ","
+        );
+        concatenatedYearStartList = concatenatedYearStartList.replace(
+          /, /g,
+          ","
+        );
         var splitYearStartArray = concatenatedYearStartList.split(",");
         var uniqueYearStart = Array.from(new Set(splitYearStartArray));
         this.yearStart = uniqueYearStart.sort().filter(Boolean);
@@ -367,7 +385,7 @@
         var splitYearEndArray = concatenatedYearEndList.split(",");
         var uniqueYearEnd = Array.from(new Set(splitYearEndArray));
         this.yearEnd = uniqueYearEnd.sort().filter(Boolean);
-        
+
         console.log("filtered");
         console.log(uniqueTypes);
       },
