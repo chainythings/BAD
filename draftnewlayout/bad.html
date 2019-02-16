@@ -169,6 +169,9 @@
               </div>
             </div>
           </div>
+          <div v-if="totalNumberOfFilteredEntries>0">
+            Results found: {{totalNumberOfFilteredEntries}}
+          </div>
           <div id="el"></div>
           <div v-if="rowDataFilteredRecords && rowDataFilteredRecords.length==0">
             no results found for your filters...
@@ -208,7 +211,7 @@
     data() {
       return {
         totalNumberOfEntries: 0,
-        resultsFound: true,
+        totalNumberOfFilteredEntries: 0,
         expandFilter: false,
         search: null,
         rowDataAllRecords: null,
@@ -391,8 +394,8 @@
         );
         if (filterCount === 0) {
           console.log("No filteres spesified.");
-          this.resultsFound = true;
           this.rowDataFilteredRecords = this.rowDataAllRecords;
+          this.totalNumberOfFilteredEntries = 0
           this.assignCards();
         }
 
@@ -403,7 +406,6 @@
         }
         if (filteredLists.length > 0) {
           console.log("filtering join");
-          this.resultsFound = true;
           // lastly do an effective inner join on the sets
           this.rowDataFilteredRecords = filteredLists
             .shift()
@@ -412,6 +414,7 @@
                 return a.indexOf(v) !== -1;
               });
             });
+          this.totalNumberOfFilteredEntries = this.rowDataFilteredRecords.length
           this.assignCards();
         }
       },
