@@ -188,7 +188,7 @@
             <v-select
               v-if="yearEnd"
               multiple
-              v-model="SelectedYearEnd"
+              v-model="selectedYearEnd"
               :options="yearEnd"
             ></v-select>
 
@@ -367,7 +367,7 @@
         if (this.selectedYearEnd) {
           filteredLists.push(
             this.rowDataAllRecords.filter(project =>
-              withinArray(this.selectedYearEnd, project.yearend)
+              withinArray(this.selectedYearEnd, [project.yearend])
             )
           );
         }
