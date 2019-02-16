@@ -1,0 +1,191 @@
+<!DOCTYPE HTML>
+<!--
+	Reflex by Pixelarity
+	pixelarity.com | hello@pixelarity.com
+	License: pixelarity.com/license
+-->
+<html>
+	<head>
+		<title>The very core of B.A.D - The Blockchain Art Directory</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/v4-shims.css">
+		<link rel="stylesheet" href="assets/css/main.css" />
+	</head>
+	<body class="is-preload">
+
+		<!-- Header -->
+			<header id="header">
+				<nav>
+					<ul>
+						<li><a href="#menu">Menu</a></li>
+					</ul>
+				</nav>
+			</header>
+
+		<!-- Menu -->
+			<nav id="menu">
+				<h2>What's in it?</h2>
+				<ul class="links">
+					<li><a href="index.html">home</a></li>
+					<li><a href="bad.html">B.A.D</a></li>
+					<li><a href="howto.html">how to</a></li>
+					<li><a href="about.html">about</a></li>
+				</ul>
+			</nav>
+
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<section id="main" class="wrapper style1">
+						<div class="inner">
+							<header class="major">
+								<h1>This is B.A.D</h1>
+								<p>You reached the very core of B.A.D - The Blockchain Art Directory</p>
+							</header>
+							<p>Great you are here to have a look at what is going on in the #blockchainart and #cryptocollectibles field.</p>
+								
+							<p>At the moment, you find all entries in form of a simple list, which comes from us not being very capable referring to coding. However, with the growth of contents, B.A.D will get features to sort and display submitted information.</p>
+								
+							<p>You want to submit something as well? No problem! If you are an artist, a representative of a blockchain art company / institution / network / community / or what ever, organizer of the latest and hottest blockchain art event in town, an AI that draws like picasso, or if you'd love to see your podcast, marketplace or protocol listed on B.A.D - don't hestitate and drop us a line via <a href="https://www.twitter.com/BchainArtDir" target="_blank">twitter</a> or <a href="mailto:BchainArtDir@protonmail.com">e-mail</a>. We'll provide you with a link to our nice submission form and are looking forward to add your info to our directory! If you'd like to get a preview of what we are going to ask you in the form: Please find a list of items <a href="bad-items.html" target="_blank">here</a>.</p>
+							<p>&nbsp;</p>
+							<p>&nbsp;</p>
+
+
+<hr style="border-style: dotted;" />
+<p>&nbsp;</p>
+		<!-- Scripts -->
+		<script src="assets/js/jquery.min.js"></script>
+<script>
+$(document).ready(function () {
+$.ajax({
+	type: 'GET',
+	url: 'https://blockchainart.directory/api?id=1rtOzAz1hvxZNionO3nZ2XPAGReS441ASJ401hdKMo3M&sheet=1&integers=false&columns=false',
+	dataType:'json'
+}).done(function( data ) {
+var i = data.rows.length; 
+
+while(i--){
+
+if(data.rows[i].nameofthesubmitteditem !== "") { var nameofthesubmitteditem = '<h2 class="nameofthesubmitteditem">'+data.rows[i].nameofthesubmitteditem+ '</h2>' };
+if(data.rows[i].urltologophotoimage !== "") { var urltologophotoimage = '<img src="'+data.rows[i].urltologophotoimage+'" alt="'+data.rows[i].nameofthesubmitteditem+'" style="height: 200px; with: auto;" />' }  else { var urltologophotoimage = ''};
+if(data.rows[i].shortdescriptionofthesubmitteditem !=="") { var shortdescriptionofthesubmitteditem = '<p>'+data.rows[i].shortdescriptionofthesubmitteditem+'</p>' }  else { var shortdescriptionofthesubmitteditem = ''};
+if(data.rows[i].typeofthesubmitteditem !=="") { var typeandgenre = '<p>'+data.rows[i].nameofthesubmitteditem+' is a <strong>' + data.rows[i].typeofthesubmitteditem + '</strong> and belongs to the genre of <strong>' + data.rows[i].genreofthesubmitteditem + '</strong>.</p>' }  else { var typeandgenre = ''};
+if(data.rows[i].websiteofthesubmitteditem !=="") { var websiteofthesubmitteditem = '<p>'+data.rows[i].nameofthesubmitteditem+' can be accessed via <strong><a href="'+data.rows[i].websiteofthesubmitteditem+'" target="_blank">'+data.rows[i].websiteofthesubmitteditem+'</a></strong></p>' }  else { var websiteofthesubmitteditem = ''};
+if(data.rows[i].further !=="") { var further = '<p>Additional info: '+data.rows[i].further+'</p>' }  else { var further = ''};
+
+if(data.rows[i].blockchainused !== ""  || data.rows[i].blockchainusedfurther !== ""  || data.rows[i].coinused !== ""  || data.rows[i].coinusedfurther !== ""  || data.rows[i].tokenused !== ""  || data.rows[i].tokenusedfurther !== ""  || data.rows[i].standardused !== ""  || data.rows[i].standardusedfurther !== ""  || data.rows[i].further_2 !== "") { var header_techinfo = '<h3>Tech info</h3><ul>' }  else { var header_techinfo = ''};
+if(data.rows[i].blockchainused !== ""  || data.rows[i].blockchainusedfurther !== "") { var blockchaincombined = '<li>Blockchain used: '+data.rows[i].blockchainused+'; ' + data.rows[i].blockchainusedfurther + '</li>' }  else { var blockchaincombined = ''};
+if(data.rows[i].coinused !== ""  || data.rows[i].coinusedfurther !== "") { var coincombined = '<li>Coin used: '+data.rows[i].coinused+'; ' + data.rows[i].coinusedfurther + '</li>' }  else { var coincombined = ''};
+if(data.rows[i].tokenused !== ""  || data.rows[i].tokenusedfurther !== "") { var tokencombined = '<li>Token used: '+data.rows[i].tokenused+'; ' + data.rows[i].tokenusedfurther + '</li>' }  else { var tokencombined = ''};
+if(data.rows[i].standardused !== ""  || data.rows[i].standardusedfurther !== "") { var standardcombined = '<li>Standard used: '+data.rows[i].standardused+'; ' + data.rows[i].standardusedfurther + '</li>' }  else { var standardcombined = ''};
+if(data.rows[i].further_2 !== "") { var further_2 = '<li>Further: '+data.rows[i].further_2+'</li>' }  else { var further_2 = ''};
+if(data.rows[i].blockchainused !== ""  || data.rows[i].blockchainusedfurther !== ""  || data.rows[i].coinused !== ""  || data.rows[i].coinusedfurther !== ""  || data.rows[i].tokenused !== ""  || data.rows[i].tokenusedfurther !== ""  || data.rows[i].standardused !== ""  || data.rows[i].standardusedfurther !== ""  || data.rows[i].further_2 !== "") { var header_techinfo_close = '</ul>' }  else { var header_techinfo_close = ''};
+
+if(data.rows[i].yearstart !== ""  || data.rows[i].yearend !== ""  || data.rows[i].locationcountry !== ""  || data.rows[i].companyinstitutionorganizationcommunitybehind !== "" ) { var header_organization = '<h3>Organization</h3><ul>' }  else { var header_organization = ''};
+if(data.rows[i].yearstart !== ""  || data.rows[i].yearend !== "" ) { var runtime = '<li>Runtime: ' + data.rows[i].yearstart + ' to ' + data.rows[i].yearend + '</li>' }  else { var runtime = ''};
+if(data.rows[i].locationcountry !== "") { var locationcountry = '<li>Location: ' + data.rows[i].locationcountry + '</li>' }  else { var locationcountry = ''};
+if(data.rows[i].companyinstitutionorganizationcommunitybehind !== "") { var companyinstitutionorganizationcommunitybehind = '<li>Entity behind: ' + data.rows[i].companyinstitutionorganizationcommunitybehind + '</li>' }  else { var companyinstitutionorganizationcommunitybehind = ''};
+if(data.rows[i].yearstart !== ""  || data.rows[i].yearend !== ""  || data.rows[i].locationcountry !== ""  || data.rows[i].companyinstitutionorganizationcommunitybehind !== "" ) { var header_organization_close = '</ul>' }  else { var header_organization_close = ''};
+
+if(data.rows[i].peoplebehind1 !== ""  || data.rows[i].peoplebehind2 !== ""  || data.rows[i].peoplebehind3 !== ""  || data.rows[i].peoplebehindfurther !== "" ) { var header_peoplebehind = '<h3>People behind</h3><ul>' }  else { var header_peoplebehind = ''};
+if(data.rows[i].peoplebehind1 !== "") { var peoplebehind1 = '<li>' + data.rows[i].peoplebehind1 + '</li>' }  else { var peoplebehind1 = ''};
+if(data.rows[i].peoplebehind2 !== "") { var peoplebehind2 = '<li>' + data.rows[i].peoplebehind2 + '</li>' }  else { var peoplebehind2 = ''};
+if(data.rows[i].peoplebehind3 !== "") { var peoplebehind3 = '<li>' + data.rows[i].peoplebehind3 + '</li>' }  else { var peoplebehind3 = ''};
+if(data.rows[i].peoplebehindfurther !== "") { var peoplebehindfurther = '<li>' + data.rows[i].peoplebehindfurther + '</li>' }  else { var peoplebehindfurther = ''};
+if(data.rows[i].peoplebehind1 !== ""  || data.rows[i].peoplebehind2 !== ""  || data.rows[i].peoplebehind3 !== ""  || data.rows[i].peoplebehindfurther !== "" ) { var header_peoplebehind_close = '</ul>' }  else { var header_peoplebehind_close = ''};
+
+if(data.rows[i].email !== ""  || data.rows[i].linkedin !== ""  || data.rows[i].twitter !== ""  || data.rows[i].discord !== ""  || data.rows[i].telegram !== ""  || data.rows[i].slack !== ""  || data.rows[i].medium !== ""  || data.rows[i].steemit !== ""  || data.rows[i].reddit !== ""  || data.rows[i].bitcointalk !== ""  || data.rows[i].github !== ""  || data.rows[i].facebook !== ""  || data.rows[i].youtube !== ""  || data.rows[i].instagram !== ""  || data.rows[i].meetup !== "" ) { var header_contact = '<h3>Contact</h3><p>' }  else { var header_contact = ''};
+if(data.rows[i].email !== "") { var email = '<a href="mailto:' + data.rows[i].email + '" target="_blank" title="' + data.rows[i].email + ' on email"><i class="fas fa-mail-bulk"></i></a> &nbsp; ' }  else { var email = ''};
+if(data.rows[i].linkedin !== "") { var linkedin = '<a href="' + data.rows[i].linkedin + '" target="_blank" title="' + data.rows[i].linkedin + ' on linkedin"><i class="fab fa-linkedin"></i></a> &nbsp; ' }  else { var linkedin = ''};
+if(data.rows[i].twitter !== "") { var twitter = '<a href="' + data.rows[i].twitter + '" target="_blank" title="' + data.rows[i].twitter + ' on twitter"><i class="fab fa-twitter"></i></a> &nbsp; ' }  else { var twitter = ''};
+if(data.rows[i].discord !== "") { var discord = '<a href="' + data.rows[i].discord + '" target="_blank" title="' + data.rows[i].discord + ' on discord"><i class="fab fa-discord"></i></a> &nbsp; ' }  else { var discord = ''};
+if(data.rows[i].telegram !== "") { var telegram = '<a href="' + data.rows[i].telegram + '" target="_blank" title="' + data.rows[i].telegram + ' on telegram"><i class="fab fa-telegram"></i></a> &nbsp; ' }  else { var telegram = ''};
+if(data.rows[i].slack !== "") { var slack = '<a href="' + data.rows[i].slack + '" target="_blank" title="' + data.rows[i].slack + ' on slack"><i class="fab fa-slack"></i></a> &nbsp; ' }  else { var slack = ''};
+if(data.rows[i].medium !== "") { var medium = '<a href="' + data.rows[i].medium + '" target="_blank" title="' + data.rows[i].medium + ' on medium"><i class="fab fa-medium"></i></a> &nbsp; ' }  else { var medium = ''};
+if(data.rows[i].steemit !== "") { var steemit = '<a href="' + data.rows[i].steemit + '" target="_blank" title="' + data.rows[i].steemit + ' on steemit">[steemit]</a> &nbsp; ' }  else { var steemit = ''};
+if(data.rows[i].reddit !== "") { var reddit = '<a href="' + data.rows[i].reddit + '" target="_blank" title="' + data.rows[i].reddit + ' on reddit"><i class="fab fa-reddit"></i></a> &nbsp; ' }  else { var reddit = ''};
+if(data.rows[i].bitcointalk !== "") { var bitcointalk = '<a href="' + data.rows[i].bitcointalk + '" target="_blank" title="' + data.rows[i].bitcointalk + ' on bitcointalk">[bitcointalk]</a> &nbsp; ' }  else { var bitcointalk = ''};
+if(data.rows[i].github !== "") { var github = '<a href="' + data.rows[i].github + '" target="_blank" title="' + data.rows[i].github + ' on github"><i class="fab fa-github"></i></a> &nbsp; ' }  else { var github = ''};
+if(data.rows[i].facebook !== "") { var facebook = '<a href="' + data.rows[i].facebook + '" target="_blank" title="' + data.rows[i].facebook + ' on facebook"><i class="fab fa-facebook"></i></a> &nbsp; ' }  else { var facebook = ''};
+if(data.rows[i].youtube !== "") { var youtube = '<a href="' + data.rows[i].youtube + '" target="_blank" title="' + data.rows[i].youtube + ' on youtube"><i class="fab fa-youtube"></i></a> &nbsp; ' }  else { var youtube = ''};
+if(data.rows[i].instagram !== "") { var instagram = '<a href="' + data.rows[i].instagram + '" target="_blank" title="' + data.rows[i].instagram + ' on instagram"><i class="fab fa-instagram"></i></a> &nbsp; ' }  else { var instagram = ''};
+if(data.rows[i].meetup !== "") { var meetup = '<a href="' + data.rows[i].meetup + '" target="_blank" title="' + data.rows[i].meetup + ' on meetup"><i class="fab fa-meetup"></i></a> &nbsp; ' }  else { var meetup = ''};
+if(data.rows[i].email !== ""  || data.rows[i].linkedin !== ""  || data.rows[i].twitter !== ""  || data.rows[i].discord !== ""  || data.rows[i].telegram !== ""  || data.rows[i].slack !== ""  || data.rows[i].medium !== ""  || data.rows[i].steemit !== ""  || data.rows[i].reddit !== ""  || data.rows[i].bitcointalk !== ""  || data.rows[i].github !== ""  || data.rows[i].facebook !== ""  || data.rows[i].youtube !== ""  || data.rows[i].instagram !== ""  || data.rows[i].meetup !== "" ) { var header_contact_close = '</p>' }  else { var header_contact_close = ''};
+
+
+if(data.rows[i].itemsubmitteddate !== ""  || data.rows[i].itemsubmittedby !== ""  || data.rows[i].itemupdateddate !== ""  || data.rows[i].itemupdatedby !== "" ) { var header_editorial = '<p>&nbsp;</p><p>Editorial:<br />' }  else { var header_editorial = ''};
+if(data.rows[i].itemsubmitteddate !== "" || data.rows[i].itemsubmittedby !== ""  ) { var itemsubmittedcombined = 'Item submitted at ' + data.rows[i].itemsubmitteddate + ' by ' + data.rows[i].itemsubmittedby }  else { var itemsubmittedcombined = ''};
+if(data.rows[i].itemupdateddate !== ""  || data.rows[i].itemupdatedby !== "" ) { var itemupdatedcombined = '<br />Item updated at ' + data.rows[i].itemupdateddate + ' by ' + data.rows[i].itemupdatedby }  else { var itemupdatedcombined = ''};
+if(data.rows[i].itemsubmitteddate !== ""  || data.rows[i].itemsubmittedby !== ""  || data.rows[i].itemupdateddate !== ""  || data.rows[i].itemupdatedby !== "" ) { var header_editorial_close = '</p>' }  else { var header_editorial_close = ''};
+
+
+
+$('#el').append(nameofthesubmitteditem + urltologophotoimage + shortdescriptionofthesubmitteditem + typeandgenre + websiteofthesubmitteditem + further + header_techinfo + blockchaincombined + coincombined + tokencombined + standardcombined + further_2 + header_techinfo_close + header_organization + runtime + locationcountry + companyinstitutionorganizationcommunitybehind + header_organization_close + header_peoplebehind + peoplebehind1 + peoplebehind2 + peoplebehind3 + peoplebehindfurther + header_peoplebehind_close + header_contact + email + linkedin + twitter + discord + telegram + slack + medium + steemit + reddit + bitcointalk + github + facebook + youtube + instagram + meetup + header_contact_close + header_editorial + itemsubmittedcombined + itemupdatedcombined + header_editorial_close + '</> <hr style="border-style: dotted;" />');
+}
+});
+var filterizd = $('.filtr-container').filterizr({
+   //options object
+});
+});
+</script>
+
+
+<div id="el"></div>
+<!-- end wrap -->
+
+
+
+
+
+
+								</div>
+					</section>
+
+				<!-- Footer -->
+					<section id="footer" class="wrapper split style2">
+						<div class="inner">
+							
+
+							<section>
+								<header>
+									<h4>Wanna support B.A.D?</h4>
+								</header>
+								<p>These addresses are made to hold some coins which will help us to maintain and develop B.A.D:</p>
+								<ul class="icons">
+									<li><a href="https://etherscan.io/address/0x94c1401B0e351Eeecd82e344bD58fd42Bd68D5C3" target="_blank" class="icon fab fa-ethereum"><span class="label">BchainArtDir.eth</span></a></li>
+									<!-- <li><a href="" target="_blank" class="icon fab fa-btc"><span class="label">Bitcoin</span></a></li> -->
+								</ul>
+							</section>
+							<section>
+								<header>
+									<h4>Contact</h4>
+								</header>
+								<p>Happy to get in touch with you via the following channels:</br>
+								&nbsp;</p>
+								<ul class="icons">
+									<li><a href="https://www.twitter.com/BchainArtDir" target="_blank" class="icon fab fa-twitter"><span class="label">Twitter</span></a></li>
+									<li><a href="https://medium.com/@BchainArtDir" target="_blank" class="icon fab fa-medium-m"><span class="label">Medium</span></a></li>
+									<li><a href="mailto:BchainArtDir@protonmail.com" class="icon far fa-envelope"><span class="label">E-Mail</span></a></li>
+								</ul>
+							</section>
+						</div>
+
+						
+						<div class="copyright">
+							<p>&copy; 2018-2019 B.A.D - The Blockchain Art Directory.</p>
+						</div>
+					</section>
+
+			</div>
+	
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+			<script src="assets/js/jquery.filterizr.min.js"></script>
+	</body>
+</html>
