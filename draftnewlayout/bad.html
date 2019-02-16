@@ -136,12 +136,60 @@
               :options="types"
             ></v-select>
 
-            Blockchain Used:
+            Blockchains:
             <v-select
               v-if="blockchains"
               multiple
               v-model="selectedBlockchains"
               :options="blockchains"
+            ></v-select>
+
+            Coins:
+            <v-select
+              v-if="coins"
+              multiple
+              v-model="selectedCoins"
+              :options="coins"
+            ></v-select>
+
+            Tokens:
+            <v-select
+              v-if="tokens"
+              multiple
+              v-model="selectedTokens"
+              :options="tokens"
+            ></v-select>
+
+            Standards:
+            <v-select
+              v-if="standards"
+              multiple
+              v-model="selectedStandards"
+              :options="standards"
+            ></v-select>
+
+            Locations:
+            <v-select
+              v-if="locations"
+              multiple
+              v-model="selectedLocations"
+              :options="locations"
+            ></v-select>
+
+            Start Year:
+            <v-select
+              v-if="yearStart"
+              multiple
+              v-model="selectedYearStart"
+              :options="yearStart"
+            ></v-select>
+
+            End Year:
+            <v-select
+              v-if="yearEnd"
+              multiple
+              v-model="SelectedYearEnd"
+              :options="yearEnd"
             ></v-select>
 
             <button @click="applyFilter">Apply</button>
@@ -229,23 +277,30 @@
         });
     },
     methods: {
+      // function to return if an element is within an array
       applyFilter() {
-        function withinArray(array, value) {
+        function withinArray(array, values) {
           let found = false;
           array.forEach(function(item) {
-            if (value.includes(item)) {
-              found = true;
-            }
+            values.forEach(function(value) {
+              if (value.includes(item)) {
+                found = true;
+              }
+            });
           });
           return found;
         }
 
         this.rowDataFilteredRecords = [];
         let filteredLists = [];
+
+        // filter through all the different selectors and return the sub set of the itmes
         if (this.selectedGenres) {
           filteredLists.push(
             this.rowDataAllRecords.filter(project =>
-              withinArray(this.selectedGenres, project.genreofthesubmitteditem)
+              withinArray(this.selectedGenres, [
+                project.genreofthesubmitteditem
+              ])
             )
           );
         }
@@ -253,7 +308,7 @@
         if (this.selectedTypes) {
           filteredLists.push(
             this.rowDataAllRecords.filter(project =>
-              withinArray(this.selectedTypes, project.typeofthesubmitteditem)
+              withinArray(this.selectedTypes, [project.typeofthesubmitteditem])
             )
           );
         }
@@ -261,11 +316,63 @@
         if (this.selectedBlockchains) {
           filteredLists.push(
             this.rowDataAllRecords.filter(project =>
-              withinArray(this.selectedBlockchains, project.blockchainused)
+              withinArray(this.selectedBlockchains, [
+                project.blockchainused,
+                project.blockchainusedfurther
+              ])
             )
           );
         }
-        
+
+        if (this.selectedCoins) {
+          filteredLists.push(
+            this.rowDataAllRecords.filter(project =>
+              withinArray(this.selectedCoins, [project.coinused, project.coinusedfurther])
+            )
+          );
+        }
+
+        if (this.selectedTokens) {
+          filteredLists.push(
+            this.rowDataAllRecords.filter(project =>
+              withinArray(this.selectedTokens, [project.tokenused, project.tokenusedfurther])
+            )
+          );
+        }
+
+        if (this.selectedStandards) {
+          filteredLists.push(
+            this.rowDataAllRecords.filter(project =>
+              withinArray(this.selectedStandards, [project.standardused, project.standardusedfurther])
+            )
+          );
+        }
+
+        if (this.selectedLocations) {
+          filteredLists.push(
+            this.rowDataAllRecords.filter(project =>
+              withinArray(this.selectedLocations, [project.locationcountry])
+            )
+          );
+        }
+
+        if (this.selectedYearStart) {
+          filteredLists.push(
+            this.rowDataAllRecords.filter(project =>
+              withinArray(this.selectedYearStart, [project.yearstart])
+            )
+          );
+        }
+
+        if (this.selectedYearEnd) {
+          filteredLists.push(
+            this.rowDataAllRecords.filter(project =>
+              withinArray(this.selectedYearEnd, project.yearend)
+            )
+          );
+        }
+        console.log(filteredLists);
+        // lastly do an effective inner join on the sets
         filteredLists = filteredLists.filter(items => items.length > 0);
         if (filteredLists.length > 0) {
           this.rowDataFilteredRecords = filteredLists
