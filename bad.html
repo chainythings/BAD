@@ -1,5 +1,4 @@
-<main>
-  <!DOCTYPE html>
+<!DOCTYPE html>
   <!--
 	Faction by Pixelarity
 	pixelarity.com | hello@pixelarity.com
@@ -11,8 +10,7 @@
     <title>The very core of B.A.D - The Blockchain Art Directory</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz"
-      crossorigin="anonymous" />
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/v4-shims.css" />
     <link rel="stylesheet" href="assets/css/main.css" />
   </head>
@@ -20,38 +18,32 @@
   <body class="is-preload">
     <!-- Header -->
     <header id="header">
-      <!-- Logo -->
-      <span class="logo">
-        <a href="index.html">Faction</a>
-        <span>By Pixelarity</span>
-      </span>
+    
+	<!-- Written Logo Nav -->
+				<span class="logo">
+					<a href="index.html">B.A.D</a>
+					<span>The Blockchain Art Directory</span>
+				</span>
 
-      <!-- Nav -->
-      <nav id="nav">
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li>
-            <a href="#" class="fas fa-angle-down"> Dropdown</a>
-            <ul>
-              <li><a href="#">Option One</a></li>
-              <li><a href="#">Option Two</a></li>
-              <li><a href="#">Option Three</a></li>
-              <li>
-                <a href="#">Submenu</a>
-                <ul>
-                  <li><a href="#">Option One</a></li>
-                  <li><a href="#">Option Two</a></li>
-                  <li><a href="#">Option Three</a></li>
-                  <li><a href="#">Option Four</a></li>
-                </ul>
-              </li>
-            </ul>
-          </li>
-          <li><a href="generic.html">Generic</a></li>
-          <li><a href="elements.html">Elements</a></li>
-          <li><a href="#" class="button">Log In</a></li>
-        </ul>
-      </nav>
+				<!-- Nav -->
+				<nav id="nav">
+						<ul>
+							<li></li>
+							<li>
+								<a href="#"><i class="fas fa-hamburger"></i> Navigate</a>
+								<ul>
+									<li><a href="index.html">home</a></li>
+									<li><a href="bad.html">B.A.D</a></li>
+									<li><a href="howto.html">how to</a></li>
+									<li><a href="about.html">about</a></li>
+									<li><a href="edu_BasicsBlockchain.html">edu - BlockchainBasics</a></li>
+									<li><a href="edu_BasicsPlatforms.html">edu - PlatformsBasics</a></li>
+									<li><a href="edu_BasicsLegal.html">edu - LegalBasics</a></li>
+								</ul>
+							</li>
+
+						</ul>
+					</nav>
     </header>
 
     <!-- Wrapper -->
@@ -70,7 +62,7 @@
 
           <p>
             Great you are here to have a look at what is going on in the
-            #blockchainart and #cryptocollectibles field.
+            #blockchainart, #cryptocollectibles and #NFT field.
           </p>
 
           <p>
@@ -82,11 +74,7 @@
           </p>
 
           <p>
-            At the moment, you find all entries in form of a simple list,
-            which comes from us not being very capable referring to coding.
-            However, with the growth of contents, B.A.D will get features to
-            sort and display submitted information. This shall help to
-            categorize contents and adopt them to individual users' needs.
+            When loading the page, the full list with all B.A.D entries appears. The latest entry is positioned on top. For the most likely event of you wanting to search the data base and filter for certain features, we provide a set of nice tools: Use the <span class="tagged">"Search"</span> box for a full text search, and select <span class="tagged">"Filters"</span> to get access to all categories currently available in the B.A.D database and to show entries according to certain characteristics.
           </p>
 
           <p>
@@ -98,7 +86,7 @@
             protocol listed on B.A.D - don't hestitate and drop us a line via
             <a href="https://www.twitter.com/BchainArtDir" target="_blank">twitter</a>
             or <a href="mailto:BchainArtDir@protonmail.com">e-mail</a>. We'll
-            provide you with a link to our nice submission form! If you'd like
+            provide you with a link to our nice submission form. If you'd like
             to get a preview of what we are going to ask you in the form:
             Please find a list of items
             <a href="bad-items.html" target="_blank">here</a>.
@@ -107,12 +95,19 @@
           <hr style="border-style: dotted;" />
           <p>&nbsp;</p>
 
+
+<!-- SEARCH AND FILTER SECTION -->
+			
+		
           <div v-if="!rowDataFilteredRecords">
-            <h3>Loading projects....</h3>
+            <h3>Loading projects ...</h3>
           </div>
           <div v-if="rowDataFilteredRecords">
-            <h1>Search B.A.D</h1>
-            <p><strong>Explore {{totalNumberOfEntries}} different crypto projects</strong></p>
+            <h3>Explore {{totalNumberOfEntries}} different crypto projects</h3>
+			  
+          <p>&nbsp;</p>
+			  
+            <p><span class="tagged">Search:</span> To search, enter a term and press "Search". <span class="tagged">Filter:</span> To filter for projects, please press the "Filters" button, select categories in the drop down menues, and press again "Search". <span class="tagged">Combined:</span> To combine search and filters, enter a term, select a filter category and press "search".</p><br>
             <div class="row">
               <div class="col-9 col-9-xlarge col-8-large col-7-medium col-5-small">
                 <input type="text" id="container" v-model="search" placeholder="search..." />
@@ -126,18 +121,17 @@
                 </button>
               </div>
             </div>
-
-            <div v-if="expandFilter">
+            <div v-if="expandFilter"><p>&nbsp;</p>
               <div class="row">
+                
                 <div class="col-4 col-12-small col-6-medium col-4-large col-4-xlarge">
-                  Genres:
-                  <v-select v-if="genres" multiple v-model="selectedGenres" :options="genres"></v-select>
-                </div>
-                <div class="col-4 col-12-small col-6-medium col-4-large col-4-xlarge">
-                  Types:
+                  Item is:
                   <v-select v-if="types" multiple v-model="selectedTypes" :options="types"></v-select>
                 </div>
-
+				<div class="col-4 col-12-small col-6-medium col-4-large col-4-xlarge">
+                  Item deals with:
+                  <v-select v-if="genres" multiple v-model="selectedGenres" :options="genres"></v-select>
+                </div>
                 <div class="col-4 col-12-small col-6-medium col-4-large col-4-xlarge">
                   Blockchains:
                   <v-select v-if="blockchains" multiple v-model="selectedBlockchains" :options="blockchains"></v-select>
@@ -168,15 +162,21 @@
                 </div>
               </div>
             </div>
+			<br>			
+			<p>&nbsp;</p>
+			<hr style="border-style: dotted;" />
+			<p>&nbsp;</p>
           </div>
           <div v-if="totalNumberOfFilteredEntries>0">
-            Results found: {{totalNumberOfFilteredEntries}}
-          </div>
+            <h3>Your search returns the following {{totalNumberOfFilteredEntries}} hits</h3>
+          <p>&nbsp;</p>
+			</div>
           <div id="el"></div>
           <div v-if="rowDataFilteredRecords && rowDataFilteredRecords.length==0">
             no results found for your filters...
-          </div>
-          <!-- end wrap -->
+          <p>&nbsp;</p>
+			</div>
+		<!-- end wrap -->
         </section>
       </section>
     </div>
@@ -185,22 +185,17 @@
     <footer id="footer">
       <div class="inner"></div>
       <div class="copyright">
-        &copy; 2018-2019 B.A.D - the Blockchain Art Directory.
-      </div>
+					&copy; 2018-2019 B.A.D - The Blockchain Art Directory. <img src="images/badges_MoonCat_ID 0X00B0C6B648_Cat20.png"
+					 alt="MoonCat ID 0X00B0C6B648" title="MoonCat ID 0X00B0C6B648" height="45">
+				</div>
     </footer>
-
-    <!-- Scripts <script src="assets/js/jquery.min.js"></script> -->
-  </body>
-
-  </html>
-</main>
+<script src="assets/js/jquery.min.js"></script>
 <script src="https://unpkg.com/vue@latest"></script>
 <script src="assets/js/jquery.dropotron.min.js"></script>
 <script src="assets/js/browser.min.js"></script>
 <script src="assets/js/breakpoints.min.js"></script>
 <script src="assets/js/util.js"></script>
 <script src="assets/js/main.js"></script>
-<script src="assets/js/jquery.min.js"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script src="https://unpkg.com/vue-select@latest"></script>
 
@@ -553,7 +548,7 @@
           }
           if (data[i].shortdescriptionofthesubmitteditem !== "") {
             var shortdescriptionofthesubmitteditem =
-              "<p>" + data[i].shortdescriptionofthesubmitteditem + "</p>";
+              "<p>&nbsp;</p><p>" + data[i].shortdescriptionofthesubmitteditem + "</p>";
           } else {
             var shortdescriptionofthesubmitteditem = "";
           }
@@ -563,7 +558,7 @@
               data[i].nameofthesubmitteditem +
               " is a <strong>" +
               data[i].typeofthesubmitteditem +
-              "</strong> and belongs to the genre of <strong>" +
+              "</strong> and deals with <strong>" +
               data[i].genreofthesubmitteditem +
               "</strong>.</p>";
           } else {
@@ -1060,3 +1055,6 @@
     flex-grow: 1;
   }
 </style>
+	    </body>
+
+  </html>
