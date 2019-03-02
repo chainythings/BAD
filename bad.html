@@ -713,7 +713,7 @@
             data[i].peoplebehind1 !== "" ||
             data[i].peoplebehind2 !== "" ||
             data[i].peoplebehind3 !== "" ||
-            data[i].peoplebehindfurther !== ""
+            data[i].peoplebehindfurtherurltoteamwebsite !== ""
           ) {
             var header_peoplebehind = "<h3>People behind</h3><ul>";
           } else {
@@ -734,17 +734,17 @@
           } else {
             var peoplebehind3 = "";
           }
-          if (data[i].peoplebehindfurther !== "") {
-            var peoplebehindfurther =
-              "<li>" + data[i].peoplebehindfurther + "</li>";
+          if (data[i].peoplebehindfurtherurltoteamwebsite !== "") {
+            var peoplebehindfurtherurltoteamwebsite =
+              "<li>" + data[i].peoplebehindfurtherurltoteamwebsite + "</li>";
           } else {
-            var peoplebehindfurther = "";
+            var peoplebehindfurtherurltoteamwebsite = "";
           }
           if (
             data[i].peoplebehind1 !== "" ||
             data[i].peoplebehind2 !== "" ||
             data[i].peoplebehind3 !== "" ||
-            data[i].peoplebehindfurther !== ""
+            data[i].peoplebehindfurtherurltoteamwebsite !== ""
           ) {
             var header_peoplebehind_close = "</ul>";
           } else {
@@ -1009,7 +1009,7 @@
             peoplebehind1 +
             peoplebehind2 +
             peoplebehind3 +
-            peoplebehindfurther +
+            peoplebehindfurtherurltoteamwebsite +
             header_peoplebehind_close +
             header_contact +
             email +
