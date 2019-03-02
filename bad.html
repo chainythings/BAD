@@ -280,7 +280,7 @@
           filteredLists.push(
             this.rowDataAllRecords.filter(project =>
               withinArray(this.selectedGenres, [
-                project.genreofthesubmitteditem
+                project.thesubmitteditemdealswith
               ])
             )
           );
@@ -290,7 +290,7 @@
           filterCount++;
           filteredLists.push(
             this.rowDataAllRecords.filter(project =>
-              withinArray(this.selectedTypes, [project.typeofthesubmitteditem])
+              withinArray(this.selectedTypes, [project.thesubmitteditemis])
             )
           );
         }
@@ -418,7 +418,7 @@
         let data = this.columnDataAllRecords;
 
         // genres
-        let concatenatedGenreList = data["genreofthesubmitteditem"].join(",");
+        let concatenatedGenreList = data["thesubmitteditemdealswith"].join(",");
         concatenatedGenreList = concatenatedGenreList.replace(/; /g, ",");
         concatenatedGenreList = concatenatedGenreList.replace(/, /g, ",");
         var splitGenreArray = concatenatedGenreList.split(",");
@@ -426,7 +426,7 @@
         this.genres = uniqueGenres.sort().filter(Boolean);
 
         // types
-        let concatenatedTypeList = data["typeofthesubmitteditem"].join(",");
+        let concatenatedTypeList = data["thesubmitteditemis"].join(",");
         concatenatedTypeList = concatenatedTypeList.replace(/; /g, ",");
         concatenatedTypeList = concatenatedTypeList.replace(/, /g, ",");
         var splitTypeArray = concatenatedTypeList.split(",");
@@ -552,14 +552,14 @@
           } else {
             var shortdescriptionofthesubmitteditem = "";
           }
-          if (data[i].typeofthesubmitteditem !== "") {
+          if (data[i].thesubmitteditemis !== "") {
             var typeandgenre =
               "<p>" +
               data[i].nameofthesubmitteditem +
               " is a <strong>" +
-              data[i].typeofthesubmitteditem +
+              data[i].thesubmitteditemis +
               "</strong> and deals with <strong>" +
-              data[i].genreofthesubmitteditem +
+              data[i].thesubmitteditemdealswith +
               "</strong>.</p>";
           } else {
             var typeandgenre = "";
