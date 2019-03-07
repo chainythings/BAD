@@ -73,6 +73,9 @@ input, select, textarea {
 	appearance: none;
 }
 
+
+
+
 /* Basic */
 
 	@-ms-viewport {
@@ -136,6 +139,9 @@ input, select, textarea {
 	background-color: #e52a6f;
 	
 	}
+
+
+
 
 	h1, h2, h3, h4 {
 	font-family: "Dosis", sans-serif;
@@ -224,6 +230,10 @@ input, select, textarea {
 	background-color: #e52a6f;
 	
 	}
+
+.featevent {
+	text-align: left;
+}
 
 	h1, h2, h3, h4, h5, h6 {
 		line-height: 1.4;
@@ -2949,6 +2959,7 @@ header h2 {
 			margin-bottom: 0.75em;
 			display: block;
 	}
+
 
 	.main {
 		-moz-flex: 1;
